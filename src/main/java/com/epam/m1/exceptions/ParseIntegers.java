@@ -19,13 +19,22 @@ public class ParseIntegers {
         Iterator<String> words = WORDS.iterator();
         int sum = 0;
         String justWords = "";
-        while (words.hasNext()) {
-            String next = words.next();
-            int number = Integer.parseInt(next);
-            // todo: complete it
+        try {
+            while (words.hasNext()) {
+                String next = words.next();
+                if (next.matches("\\d+")) {
+                    int number = Integer.parseInt(next);
+                    sum += number;
+                } else justWords = justWords.concat(next + ' ');
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
+
+        // todo: complete it
+        justWords = justWords.substring(0, justWords.length() - 1);
+        justWords = ' ' + justWords;
         System.out.println("Sum is " + sum);
         System.out.println("Just words:" + justWords);
     }
 }
-
